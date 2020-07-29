@@ -5,7 +5,6 @@ const { PubSub } = require('@google-cloud/pubsub');
 const path = require('path')
 const dotenv = require('dotenv')
 dotenv.config({ path: path.join(__dirname, '.env') });
-
 const pubsub = new PubSub();
 
 const googleProjectId = process.env.GoogleProjectId;
@@ -14,7 +13,7 @@ const topicName = process.env.TopicName;
 /**
  * Publishes a message to a Google Cloud Pub/Sub Topic.
  */
-exports.catchpointPublish = async (req, res) => {
+exports.catchpointPublish = async(req, res) => {
 	console.log(`Publishing message to topic ${topicName}.`);
 	const pubsub = new PubSub();
 	const topic = pubsub.topic(topicName);
@@ -33,10 +32,10 @@ exports.catchpointPublish = async (req, res) => {
 /**
  * Triggered from a message on Google Cloud Pub/Sub topic.
  */
-exports.catchpointSubscribe = (message) => {
+exports.catchpointSubscribe = async(message) => {
 	const data = Buffer.from(message.data, 'base64').toString();
 	const catchpointData = JSON.parse(data);
-	postToGoogleMonitoring(catchpointData);
+	await postToGoogleMonitoring(catchpointData);
 };
 
 // [START function_postToGoogleMonitoring]
@@ -57,6 +56,58 @@ async function postToGoogleMonitoring(response) {
 		timeSeriesData[i] = parseTimeSeriesData(metric, dataPoint, testId, nodeName);
 	}
 
+	//if Test type is Trcaeroute then compute RTT, Packet loss, #Hops
+	if (response.TestDetail.TypeId == 12) {
+	
+		let sumPingTime = 0;
+		let packetLossCounter = 0;
+		let pingCounter = 0;
+
+		let numberOfHops = response.Diagnostic.TraceRoute.Hops.length
+
+		for (var i = 0; i < 3; i++) {
+			if (response.Diagnostic.TraceRoute.Hops[numberOfHops - 1].RoundTripTimes[i] != null) {
+
+				sumPingTime += response.Diagnostic.TraceRoute.Hops[numberOfHops - 1].RoundTripTimes[i];
+				pingCounter++;
+			}
+			if (response.Diagnostic.TraceRoute.Hops[numberOfHops - 1].RoundTripTimes[i] == null) {
+				packetLossCounter++;
+			}
+		}
+
+		let rtt = (sumPingTime / pingCounter).toFixed();
+		let packetloss = (33.333 * packetLossCounter).toFixed();
+
+        // Datapoint for total number of hops
+		let dataPoint = parseDataPoint(numberOfHops);
+		let metric = 'catchpoint_TotalHops';
+		timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
+
+        // Datapoint for  Round trip time
+		dataPoint = parseDataPoint(rtt);
+		metric = 'catchpoint_RoundTripTimeAvg';
+		timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
+
+        // Datapoint for packet loss
+		dataPoint = parseDataPoint(packetloss);
+		metric = 'catchpoint_PacketLossPct';
+		timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
+
+
+	}
+     //if Test type is Ping then compute RTT, Packet loss
+	else if (response.TestDetail.TypeId == 6){
+
+		const metricsPing = Object.keys(response.Summary.Ping);
+		for (var i = 0; i < metricsPing.length; i++) {
+			let metricValue = response.Summary.Ping[metricsPing[i]];
+			let dataPoint = parseDataPoint(metricValue);
+			let metric = 'catchpoint_' + metricsPing[i];
+			timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
+		}
+
+	}
 	const client = new monitoring.MetricServiceClient();
 	const writeRequest = {
 		name: client.projectPath(googleProjectId),
@@ -66,11 +117,12 @@ async function postToGoogleMonitoring(response) {
 	await client
 		.createTimeSeries(writeRequest)
 		.then(results => {
-					console.error(`Success: ${JSON.stringify(results)}`);
-			})
+			console.error(`Success: ${JSON.stringify(results)}`);
+		})
 		.catch(err => {
 			console.error(`Error: ${err}.`);
 		});
+
 
 	console.log('Finished writing data.');
 }
