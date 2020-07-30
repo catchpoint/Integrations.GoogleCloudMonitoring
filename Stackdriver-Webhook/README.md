@@ -73,7 +73,7 @@ Clone [this](https://github.com/catchpoint/Integrations.GoogleCloudMonitoring) r
 Navigate to the directory where the files were cloned and update project Id under .env file
 
    ```bash
-$ cd <path to extracted directory>;
+$ cd <path to extracted directory\Integrations.GoogleCloudMonitoring\Stackdriver-Webhook>;
 ```
 ### Deploying cloud functions.
 
