@@ -126,7 +126,7 @@ custom.googleapis.com/global/catchpoint_Load
 [https://cloud.google.com/monitoring/charts/metrics-explorer
 ](https://cloud.google.com/monitoring/charts/metrics-explorer
 )
- 6. Navigate to Monitoring->Dashboards to check out the metrics.
+ 6. Navigate to Monitoring-Dashboards to check out the metrics.
 
 
 To check logs with the gcloud tool, use the logs read command:
