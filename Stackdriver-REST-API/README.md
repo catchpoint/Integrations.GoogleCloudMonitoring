@@ -68,7 +68,7 @@ $ node index.js
 
 To use Cloud Monitoring, you must have a Google Cloud project with billing enabled. The project must also be associated with a Workspace. Cloud Monitoring uses Workspaces to organize monitored Google Cloud projects.
 
-In the Google Cloud Console, go to Monitoring ->; Overview this will create a workspace for you automatically for the first time.
+In the Google Cloud Console, go to Monitoring -> Overview this will create a workspace for you automatically for the first time.
 
   
 To view the metrics for a monitored resource using Metrics Explorer, do the following:
