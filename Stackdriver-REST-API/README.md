@@ -1,3 +1,4 @@
+
 # Catchpoint-Google Stackdriver
  
 ## Introduction
@@ -37,6 +38,13 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 1. In the search results, click through to &quot;Cloud Monitoring API&quot;.
 
 1. If &quot;API enabled&quot; is displayed, then the API is already enabled. If not, click the Enable button.
+
+### Stackdriver authentication
+Set up authentication for accessing stack driver monitoring API from your local machine.
+For this we have to create a service account, download the json file and set up an environment variable called GOOGLE_APPLICATION_CREDENTIALS
+
+Please follow the steps  mentioned in the below link.
+https://cloud.google.com/docs/authentication/getting-started
 
 
 ### Clone the Repository to your local machine
