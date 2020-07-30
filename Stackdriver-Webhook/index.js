@@ -56,7 +56,7 @@ async function postToGoogleMonitoring(response) {
 		timeSeriesData[i] = parseTimeSeriesData(metric, dataPoint, testId, nodeName);
 	}
 
-	//if Test type is Trcaeroute then compute RTT, Packet loss, #Hops
+	/** If Test type is Trace route then compute RTT, Packet loss, #Hops */
 	if (response.TestDetail.TypeId == 12) {
 	
 		let sumPingTime = 0;
@@ -96,7 +96,7 @@ async function postToGoogleMonitoring(response) {
 
 
 	}
-     //if Test type is Ping then compute RTT, Packet loss
+     /** If Test type is Ping then compute RTT, Packet loss */
 	else if (response.TestDetail.TypeId == 6){
 
 		const metricsPing = Object.keys(response.Summary.Ping);
