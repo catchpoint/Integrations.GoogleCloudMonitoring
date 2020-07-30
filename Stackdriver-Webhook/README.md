@@ -67,16 +67,13 @@ $ gcloud components update
 ```
 ### Clone the Repository to your local machine
 
-This repository has all the required NodeJS scripts to deploy webhooks.
-Clone [this](https://github.com/catchpoint/Integrations.GoogleCloudMonitoring) repository to your local machine.
-
+This repository has all the required NodeJS scripts to deploy webhooks. Clone [this](https://github.com/catchpoint/Integrations.GoogleCloudMonitoring) repository to your local machine.
 Navigate to the directory where the files were cloned and update project Id under .env file
 
 ### Deploying cloud functions.
 
 
 Index.js has two functions called catchpointPublish and catchpointSubscribe.
-
 Open Google Cloud SDK Shell and navigate to the directory where the NodeJS scripts was extracted.
 
    ```bash
