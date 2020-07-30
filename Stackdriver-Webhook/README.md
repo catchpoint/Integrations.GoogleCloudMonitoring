@@ -9,36 +9,36 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 
 This Integrations supports the following test types and metrics respectively.
 
-**Web**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
+**Web Test**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
 
-**Transaction** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
+**Transaction Test** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
 
-**API** : Timing metrics like Total, Connect, Dns, ContentLoad.
+**API Test** : Timing metrics like Total, Connect, Dns, ContentLoad.
 
-**Trace route** :  Packet loss , round trip time, number of hops.
+**Trace route Test** :  Packet loss , round trip time, number of hops.
 
-**Ping** :  Packet Loss, Round Trip Time.
+**Ping Test** :  Packet Loss, Round Trip Time.
 
-**DNS** :  Response times.
+**DNS Test** :  Response times.
 
 ##  Prerequisites
 
-Google Cloud project 
+ - Google Cloud project
 
 ## Installation &amp; Configuration
 
-### Google cloud Setup:
+ ### Google Cloud setup
  ### Enabling the Monitoring API
  
 1. Select the [project](https://console.cloud.google.com/apis/dashboard) you will use to access the API.
 
-2.  Click the Enable APIs and Service button.
+2. Click the Enable APIs and Service button.
 
-3. Search for &quot;Stackdriver&quot;.
+3. Search for `Stackdriver`
 
-4. In the search results, click through to &quot;Cloud Monitoring API&quot;.
+4. In the search results, click through to `Cloud Monitoring API`.
 
-5. If &quot;API enabled&quot; is displayed, then the API is already enabled. If not, click the Enable button.
+5. If `API enabled` is displayed, then the API is already enabled. If not, click the Enable button.
 
 ### Install cloud SDK on your local machine
 
@@ -67,23 +67,17 @@ $ gcloud components update
 ```
 ### Clone the Repository to your local machine
 
-The repository has all the required NodeJS scripts to deploy webhooks.
-Clone this repository to your local machine.
+This repository has all the required NodeJS scripts to deploy webhooks.
+Clone this repository to your local machine. Navigate to the directory where the files were cloned and update project Id under .env file
 
-Navigate to the directory where the files were cloned and update project Id under .env file
-
-   ```bash
-$ cd <path to extracted directory>;
-```
 ### Deploying cloud functions.
 
 
 Index.js has two functions called catchpointPublish and catchpointSubscribe.
-
 Open Google Cloud SDK Shell and navigate to the directory where the NodeJS scripts was extracted.
 
  ```bash
-$ cd <path to extracted directory>;
+$ cd <path to extracted directory/Integrations.GoogleCloudMonitoring/Stackdriver-Webhook/>;
 ```
   
 **Deploy publish function**
