@@ -1,11 +1,7 @@
 
-
 # Catchpoint-Google Stackdriver
 
-
 ## Introduction
-
-  
 
 Cloud Monitoring provides visibility into the performance, uptime, and overall health of applications. It collects metrics, events, and metadata from Google Cloud, Amazon Web Services, hosted uptime probes, application instrumentation, and a variety of common application components including Cassandra, Nginx, Apache Web Server, Elasticsearch, and many others. Operations ingests that data and generates insights via dashboards, charts, and alerts. Cloud Monitoring alerting helps you collaborate by integrating with Slack, PagerDuty, and more.
 We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
@@ -13,25 +9,21 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 
 This Integrations supports the following test types and metrics respectively.
 
+**WEB**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
 
-**Web**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
-
-**Transaction** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
+**TRANSACTION** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
 
 **API** : Timing metrics like Total, Connect, Dns, ContentLoad.
 
-**Traceroute** :  Packet loss , round trip time, number of hops.
+**TRACEROUTE** :  Packet loss , round trip time, number of hops.
 
-**Ping** :  Packet Loss, Round Trip Time.
+**PING** :  Packet Loss, Round Trip Time.
 
 **DNS** :  Response times.
-
-
 
 ##  Prerequisites
 
 Google Cloud project 
-
 
 ## Installation &amp; Configuration
 
@@ -48,11 +40,7 @@ Google Cloud project
 
 5. If &quot;API enabled&quot; is displayed, then the API is already enabled. If not, click the Enable button.
 
-  
-
 ### Install cloud SDK on your local machine
-
-  
 
 1. Download the [Cloud SDK installer.](https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe)
 
@@ -63,10 +51,7 @@ Google Cloud project
 
 The installer starts a terminal window and runs the gcloud init command.
 
-  
-
 ### Enabling cloud functions.
-
 
 1. Go to the project selector page
 
@@ -78,13 +63,9 @@ The installer starts a terminal window and runs the gcloud init command.
 
 5. Update gcloud components:
  ```bash
-gcloud components update
+$ gcloud components update
 ```
-
-
 ### Clone the Repository to your local machine
-
-  
 
 The repository has all the required NodeJS scripts to deploy webhooks.
 Clone this repository to your local machine.
@@ -92,10 +73,8 @@ Clone this repository to your local machine.
 Navigate to the directory where the files were cloned and update project Id under .env file
 
    ```bash
-cd <path to extracted directory>;
+$ cd <path to extracted directory>;
 ```
-  
-  
 ### Deploying cloud functions.
 
 
@@ -104,29 +83,23 @@ Index.js has two functions called catchpointPublish and catchpointSubscribe.
 Open Google Cloud SDK Shell and navigate to the directory where the NodeJS scripts was extracted.
 
  ```bash
-cd <path to extracted directory>;
+$ cd <path to extracted directory>;
 ```
   
-
 **Deploy publish function**
-
   
  ```bash
-gcloud functions deploy catchpointPublish --trigger-http --runtime nodejs10 --timeout=180 --trigger-http --allow-unauthenticated
+$ gcloud functions deploy catchpointPublish --trigger-http --runtime nodejs10 --timeout=180 --trigger-http --allow-unauthenticated
 ```
 Copy the URL once the deployment is successful. This will be webhook URL which will be added in Catchpoint portal.
 
 **Deploy Subscribe function:**
 
-  
  ```bash
-gcloud functions deploy catchpointSubscribe --trigger-topic catchpoint-webhook --timeout=180 --runtime nodejs10 --allow-unauthenticated
-
+$ gcloud functions deploy catchpointSubscribe --trigger-topic catchpoint-webhook --timeout=180 --runtime nodejs10 --allow-unauthenticated
   ```
 
 **Catchpoint Setup:**
-
-  
 
 Add the copied URL to Catchpoint ->Settings ->API page under Test Data Webhook.
 
@@ -159,11 +132,11 @@ custom.googleapis.com/global/catchpoint_Load
 To check logs with the gcloud tool, use the logs read command:
 This will which help in troubleshooting.
  ```bash
-gcloud functions logs read
+$ gcloud functions logs read
 ````
 
 To view the logs for a specific function, provide the function name as an argument:
 
  ```bash
-gcloud functions logs read catchpointSubscribe
+$ gcloud functions logs read catchpointSubscribe
 ````
