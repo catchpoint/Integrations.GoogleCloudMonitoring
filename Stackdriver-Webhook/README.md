@@ -9,15 +9,15 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 
 This Integrations supports the following test types and metrics respectively.
 
-**WEB**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
+**Web**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
 
-**TRANSACTION** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
+**Transaction** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
 
 **API** : Timing metrics like Total, Connect, Dns, ContentLoad.
 
-**TRACEROUTE** :  Packet loss , round trip time, number of hops.
+**Trace route** :  Packet loss , round trip time, number of hops.
 
-**PING** :  Packet Loss, Round Trip Time.
+**Ping** :  Packet Loss, Round Trip Time.
 
 **DNS** :  Response times.
 
