@@ -72,9 +72,6 @@ Clone [this](https://github.com/catchpoint/Integrations.GoogleCloudMonitoring) r
 
 Navigate to the directory where the files were cloned and update project Id under .env file
 
-   ```bash
-$ cd <path to extracted directory\Integrations.GoogleCloudMonitoring\Stackdriver-Webhook>;
-```
 ### Deploying cloud functions.
 
 
@@ -82,8 +79,8 @@ Index.js has two functions called catchpointPublish and catchpointSubscribe.
 
 Open Google Cloud SDK Shell and navigate to the directory where the NodeJS scripts was extracted.
 
- ```bash
-$ cd <path to extracted directory>;
+   ```bash
+$ cd <path to extracted directory\Integrations.GoogleCloudMonitoring\Stackdriver-Webhook>;
 ```
   
 **Deploy publish function**
