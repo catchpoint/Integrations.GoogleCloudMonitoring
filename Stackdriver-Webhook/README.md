@@ -1,45 +1,34 @@
 
+# Catchpoint-Google Stackdriver
 
-# Catchpoint Google Stackdriver
 
-  
-
-####
-
-## **Introduction**
+## Introduction
 
   
 
 Cloud Monitoring provides visibility into the performance, uptime, and overall health of applications. It collects metrics, events, and metadata from Google Cloud, Amazon Web Services, hosted uptime probes, application instrumentation, and a variety of common application components including Cassandra, Nginx, Apache Web Server, Elasticsearch, and many others. Operations ingests that data and generates insights via dashboards, charts, and alerts. Cloud Monitoring alerting helps you collaborate by integrating with Slack, PagerDuty, and more.
-
-  
-
-####
-
-  
-  
-
 We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
-
 [https://cloud.google.com/monitoring](https://cloud.google.com/monitoring)
 
-  
+This Integrations supports the following test types and metrics respectively.
+
+**Web**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete ...
+**Transaction** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete ...
+**API** : Timing metrics like Total, Connect, Dns, ContentLoad,...
+**Traceroute** :  Packet loss , round trip time, number of hops
+**Ping** :  Packet Loss, Round Trip Time
+**DNS** :  Response times
+
+##  Prerequisites
+
+Google Cloud project 
 
 
+## Installation &amp; Configuration
 
-## **Installation &amp; Configuration**
-
-  
-
- **Google cloud Setup**:
-
-  
-  
-
- **Enabling the Monitoring API**
-
-  
-
+### Google cloud Setup:
+ ### Enabling the Monitoring API
+ 
 1. Select the [project](https://console.cloud.google.com/apis/dashboard) you will use to access the API.
 
 2.  Click the Enable APIs and Service button.
@@ -52,7 +41,7 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 
   
 
-**Install cloud SDK on your local machine**
+### Install cloud SDK on your local machine
 
   
 
@@ -61,24 +50,18 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 2. Launch the installer and follow the prompts. The installer is signed by Google LLC. Cloud SDK requires Python. Supported versions are 3.5 to 3.7, and 2.7.9 or higher. The installer will install all necessary dependencies, including the needed Python version.
 
 3. After installation has completed, accept the following options:
-
-  
-
-- Start Cloud SDK Shell
-
-  
+     -Start Cloud SDK Shell
 
 The installer starts a terminal window and runs the gcloud init command.
 
   
 
-**Enabling cloud functions.**
+### Enabling cloud functions.
 
-  
 
 1. Go to the project selector page
 
-2. Make sure that billing is enabled for your Google Cloud project. Learn how to confirm billing is enabled for your project.
+2. Make sure that billing is enabled for your Google Cloud project.   [Learn how to confirm billing is enabled for your project](https://cloud.google.com/billing/docs/how-to/modify-project).
 
 3. Enable the [Cloud Functions and Cloud Pub/Sub APIs.](https://console.cloud.google.com/flows/enableapi?apiid=cloudfunctions,pubsub&redirect=https://cloud.google.com/functions/docs/tutorials/pubsub)
 
@@ -88,11 +71,9 @@ The installer starts a terminal window and runs the gcloud init command.
  ```bash
 gcloud components update
 ```
-##
 
-  
 
-**Clone the Repository to your local machine**
+### Clone the Repository to your local machine
 
   
 
@@ -106,9 +87,8 @@ cd <path to extracted directory>;
 ```
   
   
- **Deploying cloud functions.**
+### Deploying cloud functions.
 
-  
 
 Index.js has two functions called catchpointPublish and catchpointSubscribe.
 
@@ -119,7 +99,7 @@ cd <path to extracted directory>;
 ```
   
 
-1.  **Deploy publish function:**
+**Deploy publish function**
 
   
  ```bash
@@ -127,9 +107,7 @@ gcloud functions deploy catchpointPublish --trigger-http --runtime nodejs10 --ti
 ```
 Copy the URL once the deployment is successful. This will be webhook URL which will be added in Catchpoint portal.
 
-  
-
-1.  **Deploy Subscribe function:**
+**Deploy Subscribe function:**
 
   
  ```bash
@@ -145,9 +123,7 @@ Add the copied URL to Catchpoint ->Settings ->API page under Test Data Webhook.
 
 **Note: Test data webhook should be enabled under the test properties page.**
 
-## **Results**
-
-  
+## Results
 
 To use Cloud Monitoring, you must have a Google Cloud project with billing enabled. The project must also be associated with a Workspace. Cloud Monitoring uses Workspaces to organize monitored Google Cloud projects.
 
