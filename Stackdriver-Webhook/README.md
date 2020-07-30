@@ -67,8 +67,8 @@ $ gcloud components update
 ```
 ### Clone the Repository to your local machine
 
-This repository has all the required NodeJS scripts to deploy webhooks.
-Clone this repository to your local machine. Navigate to the directory where the files were cloned and update project Id under .env file
+[This](https://github.com/catchpoint/Integrations.GoogleCloudMonitoring) repository has all the required NodeJS scripts to deploy webhooks.
+Clone [this](https://github.com/catchpoint/Integrations.GoogleCloudMonitoring) repository to your local machine. Navigate to the directory where the files were cloned and update project Id under .env file
 
 ### Deploying cloud functions.
 
