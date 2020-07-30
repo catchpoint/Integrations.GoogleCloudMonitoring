@@ -50,7 +50,7 @@ In the “REST API” section click “Add Consumer” and assign a contact. Onc
 Navigate to the directory where the files were cloned.
 
  ```bash
-$ cd <path to extracted directory>
+$ cd <path to extracted directory\GoogleCloudMonitoring\Stackdriver-REST-API>
 ```
 Update GoogleProjectId, CatchpointSecret, CatchpointSecret, CatchpointTestId under .env file
 
