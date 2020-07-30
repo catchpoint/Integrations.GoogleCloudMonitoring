@@ -10,11 +10,11 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
  
  This Integrations supports the following test types and metrics.
 
-**Web**  : Timing metrics like  Connect, Dns, ContentLoad, Document complete.
+**Web Test**  : Timing metrics like  Connect, Dns, ContentLoad, Document complete.
 
-**Transaction** : Timing metrics like  Connect, Dns, ContentLoad, Document complete .
+**Transaction Test** : Timing metrics like  Connect, Dns, ContentLoad, Document complete .
 
-**API** : Timing metrics like  Connect, Dns, ContentLoad,
+**API Test** : Timing metrics like  Connect, Dns, ContentLoad,
 
 
 
@@ -35,11 +35,11 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 
 1.  Click the Enable APIs and Service button.
 
-1. Search for &quot;Stackdriver&quot;.
+1. Search for `Stackdriver`
 
-1. In the search results, click through to &quot;Cloud Monitoring API&quot;.
+1. In the search results, click through to `Cloud Monitoring API`
 
-1. If &quot;API enabled&quot; is displayed, then the API is already enabled. If not, click the Enable button.
+1. If `API enabled` is displayed, then the API is already enabled. If not, click the Enable button.
 
 ### Stackdriver authentication
 Set up authentication for accessing stack driver monitoring API from your local machine.
