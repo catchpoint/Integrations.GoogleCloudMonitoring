@@ -1,4 +1,5 @@
 
+
 # Catchpoint-Google Stackdriver
 
 
@@ -12,12 +13,20 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 
 This Integrations supports the following test types and metrics respectively.
 
-**Web**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete ...
-**Transaction** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete ...
-**API** : Timing metrics like Total, Connect, Dns, ContentLoad,...
-**Traceroute** :  Packet loss , round trip time, number of hops
-**Ping** :  Packet Loss, Round Trip Time
-**DNS** :  Response times
+
+**Web**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
+
+**Transaction** : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
+
+**API** : Timing metrics like Total, Connect, Dns, ContentLoad.
+
+**Traceroute** :  Packet loss , round trip time, number of hops.
+
+**Ping** :  Packet Loss, Round Trip Time.
+
+**DNS** :  Response times.
+
+
 
 ##  Prerequisites
 
