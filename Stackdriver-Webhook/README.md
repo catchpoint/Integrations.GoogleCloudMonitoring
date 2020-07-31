@@ -124,7 +124,7 @@ custom.googleapis.com/global/catchpoint_Load
 
 
 To check logs with the gcloud tool, use the logs read command:
-This will which help in troubleshooting.
+This will help in troubleshooting.
  ```bash
 $ gcloud functions logs read
 ````
