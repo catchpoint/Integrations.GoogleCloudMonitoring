@@ -1,14 +1,12 @@
-
 # Catchpoint-Google Stackdriver
- 
+
 ## Introduction
 
-Cloud Monitoring provides visibility into the performance, uptime, and overall health of applications. It collects metrics, events, and metadata from Google Cloud, Amazon Web Services, hosted uptime probes, application instrumentation, and a variety of common application components including Cassandra, Nginx, Apache Web Server, Elasticsearch, and many others. Operations ingests that data and generates insights via dashboards, charts, and alerts. Cloud Monitoring alerting helps you collaborate by integrating with Slack, PagerDuty, and more. 
-We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
+Cloud Monitoring provides visibility into the performance, uptime, and overall health of applications. It collects metrics, events, and metadata from Google Cloud, Amazon Web Services, hosted uptime probes, application instrumentation, and a variety of common application components including Cassandra, Nginx, Apache Web Server, Elasticsearch, and many others. Operations ingests that data and generates insights via dashboards, charts, and alerts. Cloud Monitoring alerting helps you collaborate by integrating with Slack, PagerDuty, and more.
+We will be looking at ingesting data from Catchpoint into Cloud Monitoring using REST API.
 [https://cloud.google.com/monitoring](https://cloud.google.com/monitoring)
 
- 
- This Integrations supports the following test types and metrics.
+This Integrations supports the following test types and metrics respectively.
 
 **Web Test**  : Timing metrics like  Connect, Dns, ContentLoad, Document complete.
 
@@ -16,19 +14,15 @@ We will be looking at ingesting data from Catchpoint into Cloud Monitoring.
 
 **API Test** : Timing metrics like  Connect, Dns, ContentLoad,
 
-
-
 ##  Prerequisites
 
  - NodeJS
  - Google Cloud project 
-
-
+ 
 ## Installation &amp; Configuration
 
  ### Google cloud Setup
-
-
+ 
  ### Enabling the Monitoring API
 
 1. Select the [project](https://console.cloud.google.com/apis/dashboard) you will use to access the API.
@@ -48,14 +42,13 @@ For this we have to create a service account, download the json file and set up 
 Please follow the steps  mentioned in the below link.
 https://cloud.google.com/docs/authentication/getting-started
 
-
 ### Clone the Repository to your local machine
 
 Clone [this](https://github.com/catchpoint/Integrations.GoogleCloudMonitoring) repository to your local machine.
 
-In Catchpoint go to Settings>API:
-[https://portal.catchpoint.com/ui/Content/Administration/ApiDetail.aspx](https://portal.catchpoint.com/ui/Content/Administration/ApiDetail.aspx)
-In the “REST API” section click “Add Consumer” and assign a contact. Once saved you will be able to retrieve the consumer key and secret.
+1. In catchpoint,from Settings go to [API page](https://portal.catchpoint.com/ui/Content/Administration/ApiDetail.aspx).
+1. In the “REST API” section click “Add Consumer” and assign a contact. 
+1. Once saved you will be able to retrieve the consumer key and secret.
 
 Navigate to the directory where the files were cloned.
 
@@ -68,22 +61,21 @@ Run npm install which will download all the package and its dependencies.
  ```bash
 $ npm install
 ```
-
 Now execute index.js file from the terminal. This will pull up last 15 minutes raw data for a given test and writes data to stackdriver monitoring (using Google API).
  ```bash
 $ node index.js
 ```
-
 ## Results
 
 To use Cloud Monitoring, you must have a Google Cloud project with billing enabled. The project must also be associated with a Workspace. Cloud Monitoring uses Workspaces to organize monitored Google Cloud projects.
 
-In the Google Cloud Console, go to Monitoring -> Overview this will create a workspace for you automatically for the first time.
-
+ 1. In the Google Cloud Console
+ 1. Go to Monitoring and then click overview. 
+ 1. This will create a workspace for you automatically for the first time.
   
 To view the metrics for a monitored resource using Metrics Explorer, do the following:
 
- 1. From the Google Cloud Console, go to Monitoring. [https://console.cloud.google.com/monitoring](https://console.cloud.google.com/monitoring)
+ 1. From the Google Cloud Console, go to [Monitoring](https://console.cloud.google.com/monitoring).
  1. In the Monitoring navigation pane, click Metrics Explorer.
  1. Enter the monitored resource name in the Find resource type and metric text box.
 Resource type -> global. 
@@ -95,5 +87,4 @@ custom.googleapis.com/global/catchpoint_Load
 [https://cloud.google.com/monitoring/charts/metrics-explorer
 ](https://cloud.google.com/monitoring/charts/metrics-explorer
 )
- 1. Navigate to Monitoring -> Dashboards to check out the metrics.
-
+ 1. Navigate to Monitoring-Dashboards to check out the metrics.
