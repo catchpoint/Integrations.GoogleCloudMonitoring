@@ -107,7 +107,7 @@ To use Cloud Monitoring, you must have a Google Cloud project with billing enabl
   
 To view the metrics for a monitored resource using Metrics Explorer, do the following:
 
- 1. From the Google Cloud Console, go to Monitoring. (https://console.cloud.google.com/monitoring)[https://console.cloud.google.com/monitoring]
+ 1. From the Google Cloud Console, go to [Monitoring](https://console.cloud.google.com/monitoring).
  1. In the Monitoring navigation pane, click Metrics Explorer.
  1. Enter the monitored resource name in the Find resource type and metric text box.
 Resource type -> global. 
