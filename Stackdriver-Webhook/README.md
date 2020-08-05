@@ -1,11 +1,11 @@
-# Catchpoint-Google Stackdriver
+# Catchpoint and Google Stackdriver Integration
 
 ## Introduction
 
 Cloud Monitoring provides visibility into the performance, uptime, and overall health of applications. It collects metrics, events, and metadata from Google Cloud, Amazon Web Services, hosted uptime probes, application instrumentation, and a variety of common application components including Cassandra, Nginx, Apache Web Server, Elasticsearch, and many others. Operations ingests that data and generates insights via dashboards, charts, and alerts. Cloud Monitoring alerting helps you collaborate by integrating with Slack, PagerDuty, and more.
 We will be looking at ingesting data from Catchpoint into [Cloud Monitoring](https://cloud.google.com/monitoring) using Test data webhooks.
 
-This Integrations supports the following test types and metrics respectively.
+This Integration allows to send data from following test types and supported metrics are listed below:
 
 **Web Test**  : Timing metrics like Total, Connect, Dns, ContentLoad, Document complete.
 
