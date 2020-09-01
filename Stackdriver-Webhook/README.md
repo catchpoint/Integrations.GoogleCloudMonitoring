@@ -100,7 +100,7 @@ $ cd <path to extracted directory/Integrations.GoogleCloudMonitoring/Stackdriver
     Copy the URL once the deployment is successful. This will be webhook URL which will be added in Catchpoint portal.
  
  1. Deploy Subscribe function:
-    ```bash
+    `$ gcloud functions deploy catchpointSubscribe --trigger-topic catchpoint-webhook --timeout=180 --runtime nodejs10 --allow-unauthenticated`
     $ gcloud functions deploy catchpointSubscribe --trigger-topic catchpoint-webhook --timeout=180 --runtime nodejs10 --allow-unauthenticated
     ```
 ####  Set up the Catchpoint Test data webhook.
