@@ -79,7 +79,7 @@ $ gcloud components update
 ```
 #### Set up the Google Cloud Monitoring Repository locally
 
-1. Clone this repository into a working directory
+1. Clone this repository into a working directory\
 `$ git clone https://github.com/catchpoint/Integrations.GoogleCloudMonitoring.git`
 
 1. In the `.env` file fromCatchpoint-Stackdriver-Webhook directory , update GoogleProjectId
