@@ -18,15 +18,15 @@ This integration uses the [Cloud Monitoring](https://cloud.google.com/monitoring
 
 1. **Document Complete** The time to render the full webpage. Reported in milliseconds.
 
-1. **Round Trip Time** The time it takes for a network request to go from a starting point to a destination and back again to the starting point
+1. **Round Trip Time** The time it takes for a network request to go from a starting point to a destination and back again to the starting point.
 
-1.  **Packet Loss** occurs when one or more packets of data travelling across a computer network fail to reach their destination
+1.  **Packet Loss** occurs when one or more packets of data travelling across a computer network fail to reach their destination.
 
 #### Supported tests and available metrics
 
-1. **Web Test** Connect, DNS, Content Load, Document Complete 
+1. **Web Test** Connect, DNS, Content Load, Document Complete.
 
-1. **Transaction Test** Connect, DNS, Content Load, Document Complete
+1. **Transaction Test** Connect, DNS, Content Load, Document Complete.
 
 1. **API Test** Connect, DNS, Content Load
 
