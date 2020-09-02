@@ -20,11 +20,11 @@ This integration uses the [Cloud Monitoring](https://cloud.google.com/monitoring
 
 #### Supported tests and available metrics
 
-1. **Web Test** Connect, DNS, Content Load, Document Complete  
+1. **Web Test** Connect, DNS, Content Load, Document Complete.
 
-1. **Transaction Test** Connect, DNS, Content Load, Document Complete
+1. **Transaction Test** Connect, DNS, Content Load, Document Complete.
 
-1. **API Test** Connect, DNS, Content Load
+1. **API Test** Connect, DNS, Content Load.
 
 ## Prerequisites
 
