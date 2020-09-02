@@ -77,7 +77,6 @@ async function postToGoogleMonitoring(response) {
 				packetLossCounter++;
 			}
 		}
-
 		let rtt = (sumPingTime / pingCounter).toFixed();
 		let packetloss = (PacketLossMultiplier * packetLossCounter).toFixed();
  
