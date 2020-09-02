@@ -102,7 +102,6 @@ async function postToGoogleMonitoring(response) {
 			let metric = 'catchpoint_' + metricsPing[i];
 			timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
 		}
-
 	}
 	const client = new monitoring.MetricServiceClient();
 	const writeRequest = {
