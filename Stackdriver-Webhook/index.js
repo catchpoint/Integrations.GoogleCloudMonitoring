@@ -9,6 +9,12 @@ const pubsub = new PubSub();
 
 const googleProjectId = process.env.GoogleProjectId;
 const topicName = process.env.TopicName;
+const TotalHopsMetric = 'catchpoint_TotalHops';
+const RoundTripTimeAverageMetric = 'catchpoint_RoundTripTimeAvg';
+const PacketLossPercentMetric = 'catchpoint_PacketLossPct';
+const TracerouteTestID = 12;
+const PingTestId = 6;
+const PacketLossMultiplier = 33.333;
 
 /**
  * Publishes a message to a Google Cloud Pub/Sub Topic.
@@ -55,19 +61,15 @@ async function postToGoogleMonitoring(response) {
 		let metric = 'catchpoint_' + metrics[i];
 		timeSeriesData[i] = parseTimeSeriesData(metric, dataPoint, testId, nodeName);
 	}
-
-	/** If Test type is Trace route then compute RTT, Packet loss, #Hops */
-	if (response.TestDetail.TypeId == 12) {
+	/** If test type is Traceroute then compute RTT, Packet Loss, #Hops. */
+	if (response.TestDetail.TypeId == TracerouteTestID) {
 	
 		let sumPingTime = 0;
 		let packetLossCounter = 0;
 		let pingCounter = 0;
-
 		let numberOfHops = response.Diagnostic.TraceRoute.Hops.length
-
 		for (var i = 0; i < 3; i++) {
 			if (response.Diagnostic.TraceRoute.Hops[numberOfHops - 1].RoundTripTimes[i] != null) {
-
 				sumPingTime += response.Diagnostic.TraceRoute.Hops[numberOfHops - 1].RoundTripTimes[i];
 				pingCounter++;
 			}
@@ -77,28 +79,22 @@ async function postToGoogleMonitoring(response) {
 		}
 
 		let rtt = (sumPingTime / pingCounter).toFixed();
-		let packetloss = (33.333 * packetLossCounter).toFixed();
-
-                
-	        /** Datapoint for total number of hops */
+		let packetloss = (PacketLossMultiplier * packetLossCounter).toFixed();
+ 
+	    /** Datapoint for total number of hops */
 		let dataPoint = parseDataPoint(numberOfHops);
-		let metric = 'catchpoint_TotalHops';
-		timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
+		timeSeriesData.push(parseTimeSeriesData(TotalHopsMetric, dataPoint, testId, nodeName));
 
-                /** Datapoint for  Round trip time */
+        /** Datapoint for  Round trip time */
 		dataPoint = parseDataPoint(rtt);
-		metric = 'catchpoint_RoundTripTimeAvg';
-		timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
+		timeSeriesData.push(parseTimeSeriesData(RoundTripTimeAverageMetric, dataPoint, testId, nodeName));
 
-                /** Datapoint for packet loss */
+        /** Datapoint for packet loss */
 		dataPoint = parseDataPoint(packetloss);
-		metric = 'catchpoint_PacketLossPct';
-		timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
-
-
+		timeSeriesData.push(parseTimeSeriesData(PacketLossPercentMetric, dataPoint, testId, nodeName));
 	}
-        /** If Test type is Ping then compute RTT, Packet loss */
-	else if (response.TestDetail.TypeId == 6){
+        /** If test type is Ping then compute RTT, Packet loss */
+	else if (response.TestDetail.TypeId == PingTestId) {
 
 		const metricsPing = Object.keys(response.Summary.Ping);
 		for (var i = 0; i < metricsPing.length; i++) {
@@ -123,8 +119,6 @@ async function postToGoogleMonitoring(response) {
 		.catch(err => {
 			console.error(`Error: ${err}.`);
 		});
-
-
 	console.log('Finished writing data.');
 }
 
