@@ -6,9 +6,9 @@ const path = require('path')
 const dotenv = require('dotenv')
 dotenv.config({ path: path.join(__dirname, '.env') });
 const pubsub = new PubSub();
-
 const googleProjectId = process.env.GoogleProjectId;
 const topicName = process.env.TopicName;
+
 const TotalHopsMetric = 'catchpoint_TotalHops';
 const RoundTripTimeAverageMetric = 'catchpoint_RoundTripTimeAvg';
 const PacketLossPercentMetric = 'catchpoint_PacketLossPct';
@@ -112,7 +112,7 @@ async function postToGoogleMonitoring(response) {
 	await client
 		.createTimeSeries(writeRequest)
 		.then(results => {
-			console.error(`Success: ${JSON.stringify(results)}`);
+			console.log(`Success: ${JSON.stringify(results)}`);
 		})
 		.catch(err => {
 			console.error(`Error: ${err}.`);
@@ -136,7 +136,7 @@ function parseDataPoint(metric) {
 			doubleValue: metric,
 		},
 	};
-
+	
 	return dataPoint;
 }
 
