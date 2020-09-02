@@ -61,7 +61,7 @@ async function postToGoogleMonitoring(response) {
 		let metric = 'catchpoint_' + metrics[i];
 		timeSeriesData[i] = parseTimeSeriesData(metric, dataPoint, testId, nodeName);
 	}
-	/** If test type is Traceroute then compute RTT, Packet Loss, #Hops. */
+	/** If test type is Traceroute then compute RTT, Packet Loss, #Hops.*/
 	if (response.TestDetail.TypeId == TracerouteTestID) {
 	
 		let sumPingTime = 0;
@@ -81,19 +81,19 @@ async function postToGoogleMonitoring(response) {
 		let rtt = (sumPingTime / pingCounter).toFixed();
 		let packetloss = (PacketLossMultiplier * packetLossCounter).toFixed();
  
-	    /** Datapoint for total number of hops */
+	        /** Datapoint for total number of hops */
 		let dataPoint = parseDataPoint(numberOfHops);
 		timeSeriesData.push(parseTimeSeriesData(TotalHopsMetric, dataPoint, testId, nodeName));
 
-        /** Datapoint for  Round trip time */
+                /** Datapoint for  Round trip time */
 		dataPoint = parseDataPoint(rtt);
 		timeSeriesData.push(parseTimeSeriesData(RoundTripTimeAverageMetric, dataPoint, testId, nodeName));
 
-        /** Datapoint for packet loss */
+                /** Datapoint for packet loss */
 		dataPoint = parseDataPoint(packetloss);
 		timeSeriesData.push(parseTimeSeriesData(PacketLossPercentMetric, dataPoint, testId, nodeName));
 	}
-        /** If test type is Ping then compute RTT, Packet loss */
+        /** If test type is Ping then compute RTT, Packet Loss */
 	else if (response.TestDetail.TypeId == PingTestId) {
 
 		const metricsPing = Object.keys(response.Summary.Ping);
