@@ -11,19 +11,29 @@ This integration uses the [Cloud Monitoring](https://cloud.google.com/monitoring
 #### Supported Metrics
 
 1. **Connect** The time to establish a connection with a specific URL. Reported in milliseconds.
-2. **DNS** The time to resolve the primary URL. Reported in milliseconds.
-3. **Content Load** The time to load all components, from the first byte to the last byte, from the provided URL. Reported in milliseconds.
-4. **Document Complete** The time to render the full webpage. Reported in milliseconds.
-5. **Round Trip Time** The time it takes for a network request to go from a starting point to a destination and back again to the starting point
-6.  **Packet Loss** occurs when one or more packets of data travelling across a computer network fail to reach their destination
+
+1. **DNS** The time to resolve the primary URL. Reported in milliseconds.
+
+1. **Content Load** The time to load all components, from the first byte to the last byte, from the provided URL. Reported in milliseconds.
+
+1. **Document Complete** The time to render the full webpage. Reported in milliseconds.
+
+1. **Round Trip Time** The time it takes for a network request to go from a starting point to a destination and back again to the starting point
+
+1.  **Packet Loss** occurs when one or more packets of data travelling across a computer network fail to reach their destination
 
 #### Supported tests and available metrics
 
-1. **Web Test** Connect, DNS, Content Load, Document Complete  
+1. **Web Test** Connect, DNS, Content Load, Document Complete 
+
 1. **Transaction Test** Connect, DNS, Content Load, Document Complete
+
 1. **API Test** Connect, DNS, Content Load
+
 1. **Trace route Test** :  Packet loss , round trip time, number of hops.
+
 1. **Ping Test** :  Packet Loss, Round Trip Time.
+
 1. **DNS Test** :  Response times.
 
 ##  Prerequisites
