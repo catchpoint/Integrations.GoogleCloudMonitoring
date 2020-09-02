@@ -81,15 +81,15 @@ async function postToGoogleMonitoring(response) {
 		let rtt = (sumPingTime / pingCounter).toFixed();
 		let packetloss = (PacketLossMultiplier * packetLossCounter).toFixed();
  
-	        /** Datapoint for total number of hops */
+	        /** Datapoint for Total Number of Hops */
 		let dataPoint = parseDataPoint(numberOfHops);
 		timeSeriesData.push(parseTimeSeriesData(TotalHopsMetric, dataPoint, testId, nodeName));
 
-                /** Datapoint for  Round trip time */
+                /** Datapoint for  Round Trip Time */
 		dataPoint = parseDataPoint(rtt);
 		timeSeriesData.push(parseTimeSeriesData(RoundTripTimeAverageMetric, dataPoint, testId, nodeName));
 
-                /** Datapoint for packet loss */
+                /** Datapoint for Packet Loss */
 		dataPoint = parseDataPoint(packetloss);
 		timeSeriesData.push(parseTimeSeriesData(PacketLossPercentMetric, dataPoint, testId, nodeName));
 	}
