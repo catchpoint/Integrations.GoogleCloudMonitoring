@@ -27,14 +27,14 @@ This integration uses the [Cloud Monitoring](https://cloud.google.com/monitoring
 1. **Web Test**: Connect, DNS, Content Load, Document Complete.
 
 1. **Transaction Test**: Connect, DNS, Content Load, Document Complete.
-
+   
 1. **API Test**: Connect, DNS, Content Load.
 
 1. **Traceroute Test**:  Packet Loss , Round Trip Time, Number of Hops.
 
 1. **Ping Test**:  Packet Loss, Round Trip Time.
 
-1. **DNS Test**:  Response times.
+1. **DNS Test**:  Response Time.
 
 ##  Prerequisites
 
@@ -82,7 +82,7 @@ _Note : The installer starts a terminal window and runs the_ `gcloud init` _comm
 1. Clone this repository into a working directory.  
 `$ git clone https://github.com/catchpoint/Integrations.GoogleCloudMonitoring.git`
 
-1. In the `.env` file fromCatchpoint-Stackdriver-Webhook directory , update GoogleProjectId
+1. In the `.env` file from Stackdriver-Webhook directory , update GoogleProjectId.
 
 #### Deploying Google Cloud functions.
 
