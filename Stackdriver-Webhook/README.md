@@ -51,7 +51,7 @@ _Note: Cloud Monitoring requires a Google Cloud project that is associated with 
 
 1. Navigate to your Google Cloud [project dashboard](https://console.cloud.google.com/apis/dashboard) to access your API information.
 
-1. Find and select `Cloud Monitoring API` to ensure APIs are enabled.
+1. Find and select `Cloud Monitoring API` to ensure APIs are enabled.   
 _Note: If the API is already enabled, the message_ **API enabled** _will be displayed. If there is no message, click on the_ **Enable** _button._
 
 #### Install cloud SDK on your local machine
