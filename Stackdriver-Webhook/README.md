@@ -10,31 +10,31 @@ This integration uses the [Cloud Monitoring](https://cloud.google.com/monitoring
 
 #### Supported Metrics
 
-1. **Connect** The time to establish a connection with a specific URL. Reported in milliseconds.
+1. **Connect**: The time to establish a connection with a specific URL. Reported in milliseconds.
 
-1. **DNS** The time to resolve the primary URL. Reported in milliseconds.
+1. **DNS**: The time to resolve the primary URL. Reported in milliseconds.
 
-1. **Content Load** The time to load all components, from the first byte to the last byte, from the provided URL. Reported in milliseconds.
+1. **Content Load**: The time to load all components, from the first byte to the last byte, from the provided URL. Reported in milliseconds.
 
-1. **Document Complete** The time to render the full webpage. Reported in milliseconds.
+1. **Document Complete**: The time to render the full webpage. Reported in milliseconds.
 
-1. **Round Trip Time** The time it takes for a network request to go from a starting point to a destination and back again to the starting point.
+1. **Round Trip Time**: Time difference between the client initiating a request and the client receiving a response. Reported in milliseconds.
 
-1.  **Packet Loss** occurs when one or more packets of data travelling across a computer network fail to reach their destination.
+1.  **Packet Loss**: Percentage of total packet loss.
 
 #### Supported tests and available metrics
 
-1. **Web Test** Connect, DNS, Content Load, Document Complete.
+1. **Web Test**: Connect, DNS, Content Load, Document Complete.
 
-1. **Transaction Test** Connect, DNS, Content Load, Document Complete.
+1. **Transaction Test**: Connect, DNS, Content Load, Document Complete.
 
-1. **API Test** Connect, DNS, Content Load
+1. **API Test**: Connect, DNS, Content Load.
 
-1. **Trace route Test** :  Packet loss , round trip time, number of hops.
+1. **Traceroute Test**:  Packet Loss , Round Trip Time, Number of Hops.
 
-1. **Ping Test** :  Packet Loss, Round Trip Time.
+1. **Ping Test**:  Packet Loss, Round Trip Time.
 
-1. **DNS Test** :  Response times.
+1. **DNS Test**:  Response times.
 
 ##  Prerequisites
 
@@ -64,7 +64,7 @@ _Note: If the API is already enabled, the message_ **API enabled** _will be disp
 
 _Note : The installer starts a terminal window and runs the_ `gcloud init` _command._
 
-#### Enabling cloud functions.
+#### Enabling Google Cloud functions.
 
 1. Go to the project selector page
 
@@ -74,42 +74,40 @@ _Note : The installer starts a terminal window and runs the_ `gcloud init` _comm
 
 1. Install and initialize the Cloud SDK.
 
-1. Update gcloud components:\
-`$ gcloud components update`
+1. Update gcloud components:  
+`$ $ gcloud components update`
 
 #### Set up the Google Cloud Monitoring Repository locally
 
-1. Clone this repository into a working directory\
+1. Clone this repository into a working directory.  
 `$ git clone https://github.com/catchpoint/Integrations.GoogleCloudMonitoring.git`
 
 1. In the `.env` file fromCatchpoint-Stackdriver-Webhook directory , update GoogleProjectId
 
-#### Deploying cloud functions.
+#### Deploying Google Cloud functions.
 
-Index.js has two functions called catchpointPublish and catchpointSubscribe.
-Open Google Cloud SDK Shell and navigate to the directory where the NodeJS scripts was extracted.
+Open Google Cloud SDK Shell and navigate to the directory where the NodeJS scripts was extracted.  
+`$ cd <path to extracted directory/Integrations.GoogleCloudMonitoring/Stackdriver-Webhook/>;`
 
- `$ cd <path to extracted directory/Integrations.GoogleCloudMonitoring/Stackdriver-Webhook/>;`
- 
- 1. Deploy publish function:\
-    `$ gcloud functions deploy catchpointPublish --trigger-http --runtime nodejs10 --timeout=180 --trigger-http --allow-unauthenticated`
-        
+ 1. Deploy publish function:  
+   `$ gcloud functions deploy catchpointPublish --trigger-http --runtime nodejs10 --timeout=180 --trigger-http --allow-unauthenticated`
+
     Copy the URL once the deployment is successful. This will be webhook URL which will be added in Catchpoint portal.
     
- 1. Deploy Subscribe function:\
-    `$ gcloud functions deploy catchpointSubscribe --trigger-topic catchpoint-webhook --timeout=180 --runtime nodejs10 --allow-unauthenticated`
-    
+  1. Deploy Subscribe function:  
+      `$ gcloud functions deploy catchpointSubscribe --trigger-topic catchpoint-webhook --timeout=180 --runtime nodejs10 --allow-unauthenticated`
+      
 ####  Set up the Catchpoint Test data webhook.
 
 Add the copied URL to Catchpoint.
 
-1. In catchpoint,from Settings go to [API page](https://portal.catchpoint.com/ui/Content/Administration/ApiDetail.aspx).
+1. In Catchpoint, from Settings go to [API page](https://portal.catchpoint.com/ui/Content/Administration/ApiDetail.aspx).
 
 1. Under Test Data Webhook add the copied url.
 
-1. Select default JSON for Test-data webhook and save the changes
+1. Select default JSON for Test Data Webhook and save the changes
 
-_Note: Test data webhook should be enabled under the test properties page._
+_Note: Test Data Webhook should be enabled under the test properties page._
 
 ## Results
 
