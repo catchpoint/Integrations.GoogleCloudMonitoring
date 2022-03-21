@@ -52,14 +52,20 @@ exports.catchpointSubscribe = async(message) => {
 async function postToGoogleMonitoring(response) {
 	const testId = response.TestId;
 	const nodeName = response.NodeName;
+	const testName = response.TestDetail.Name
 	const metrics = Object.keys(response.Summary.Timing);
+	let params = {}
+	if (response.Summary.hasOwnProperty('Request')){
+	params['Test_url'] = response.Summary.Request
+	}
+	params['Test_name'] = testName;
 
 	let timeSeriesData = [];
 	for (var i = 0; i < metrics.length; i++) {
 		let metricValue = response.Summary.Timing[metrics[i]];
 		let dataPoint = parseDataPoint(metricValue);
 		let metric = 'catchpoint_' + metrics[i];
-		timeSeriesData[i] = parseTimeSeriesData(metric, dataPoint, testId, nodeName);
+		timeSeriesData[i] = parseTimeSeriesData(metric, dataPoint, testId, params, nodeName);
 	}
 	/** If test type is Traceroute then compute RTT, Packet Loss, #Hops.*/
 	if (response.TestDetail.TypeId == TracerouteTestID) {
@@ -82,15 +88,15 @@ async function postToGoogleMonitoring(response) {
  
 	        /** Datapoint for Total Number of Hops */
 		let dataPoint = parseDataPoint(numberOfHops);
-		timeSeriesData.push(parseTimeSeriesData(TotalHopsMetric, dataPoint, testId, nodeName));
+		timeSeriesData.push(parseTimeSeriesData(TotalHopsMetric, dataPoint, testId, params, nodeName));
 
                 /** Datapoint for  Round Trip Time */
 		dataPoint = parseDataPoint(rtt);
-		timeSeriesData.push(parseTimeSeriesData(RoundTripTimeAverageMetric, dataPoint, testId, nodeName));
+		timeSeriesData.push(parseTimeSeriesData(RoundTripTimeAverageMetric, dataPoint, testId, params, nodeName));
 
                 /** Datapoint for Packet Loss */
 		dataPoint = parseDataPoint(packetloss);
-		timeSeriesData.push(parseTimeSeriesData(PacketLossPercentMetric, dataPoint, testId, nodeName));
+		timeSeriesData.push(parseTimeSeriesData(PacketLossPercentMetric, dataPoint, testId, params, nodeName));
 	}
         /** If test type is Ping then compute RTT, Packet Loss */
 	else if (response.TestDetail.TypeId == PingTestId) {
@@ -100,7 +106,7 @@ async function postToGoogleMonitoring(response) {
 			let metricValue = response.Summary.Ping[metricsPing[i]];
 			let dataPoint = parseDataPoint(metricValue);
 			let metric = 'catchpoint_' + metricsPing[i];
-			timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, nodeName));
+			timeSeriesData.push(parseTimeSeriesData(metric, dataPoint, testId, params, nodeName));
 		}
 	}
 	const client = new monitoring.MetricServiceClient();
@@ -144,13 +150,14 @@ function parseDataPoint(metric) {
 /**
  * Constructs a complete timeseries object using datapoint from parseDataPoint function.
  */
-function parseTimeSeriesData(metric, dataPoint, testId, nodeName) {
+function parseTimeSeriesData(metric, dataPoint, testId, params, nodeName) {
 	const timeSeriesData = {
 		metric: {
 			type: 'custom.googleapis.com/global/' + metric,
 			labels: {
 				Test_id: testId,
-				Node: nodeName
+				Node: nodeName,
+				Test_name: params['Test_name']
 			},
 		},
 		resource: {
@@ -161,6 +168,8 @@ function parseTimeSeriesData(metric, dataPoint, testId, nodeName) {
 		},
 		points: [dataPoint],
 	};
+	if(params!=null && params['Test_url']!=null)
+	timeSeriesData['metric']['labels']['Test_url']= params['Test_url']
 
 	return timeSeriesData;
 }
