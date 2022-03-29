@@ -169,7 +169,7 @@ function parseTimeSeriesData(metric, dataPoint, testId, test_params, nodeName) {
 		points: [dataPoint],
 	};
 	if(test_params!=null && test_params['Test_url']!=null)
-	timeSeriesData['metric']['labels']['Test_url']= test_params['Test_url']
+		timeSeriesData['metric']['labels']['Test_url']= test_params['Test_url']
 
 	return timeSeriesData;
 }
