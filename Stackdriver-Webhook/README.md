@@ -91,13 +91,13 @@ _Note : The installer starts a terminal window and runs the_ `gcloud init` _comm
 
 1. Execute the following chain of commands in the same order. This is done to update all packages to a new major version.
 
-`$ npm install -g npm-check-updates
+```$ npm install -g npm-check-updates
 
 $ ncu -u
 
 $ npm update
 
-$ npm install`
+$ npm install```
 
 _Note: Run `npm fund` if prompted
 
