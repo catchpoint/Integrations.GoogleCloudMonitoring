@@ -56,8 +56,8 @@ async function postToGoogleMonitoring(response) {
 	const metrics = Object.keys(response.Summary.Timing);
 	let test_params = {}
 	if (response.Summary.hasOwnProperty('Request')){
-	test_params['Test_url'] = response.Summary.Request
-	}
+		test_params['Test_url'] = response.Summary.Request
+		}
 	test_params['Test_name'] = testName;
 
 	let timeSeriesData = [];
