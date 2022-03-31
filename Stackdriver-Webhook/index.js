@@ -147,14 +147,14 @@ function parseDataPoint(metric) {
 /**
  * Constructs a complete time series object using data point from parseDataPoint function.
  */
-function parseTimeSeriesData(metric, dataPoint, testId, test_params, nodeName) {
+function parseTimeSeriesData(metric, dataPoint, testId, testParameters, nodeName) {
     const timeSeriesData = {
         metric: {
             type: 'custom.googleapis.com/global/' + metric,
             labels: {
                 Test_id: testId,
                 Node: nodeName,
-                Test_name: test_params['Test_name']
+                Test_name: testParameters['Test_name']
             },
         },
         resource: {
@@ -166,8 +166,8 @@ function parseTimeSeriesData(metric, dataPoint, testId, test_params, nodeName) {
         points: [dataPoint],
     };
 
-    if (test_params != null && test_params['Test_url'] != null) {
-        timeSeriesData['metric']['labels']['Test_url'] = test_params['Test_url']
+    if (testParameters != null && testParameters['Test_url'] != null) {
+        timeSeriesData['metric']['labels']['Test_url'] = testParameters['Test_url']
     }
 
     return timeSeriesData;
